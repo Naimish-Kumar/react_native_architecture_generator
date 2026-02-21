@@ -1,0 +1,72 @@
+{
+  "name": "react-native-architecture-generator",
+  "version": "1.1.0",
+  "description": "A professional CLI tool to scaffold React Native apps with Clean Architecture, MVVM, Atomic Design, or Feature-Based patterns.",
+  "type": "module",
+  "main": "./dist/lib/index.js",
+  "module": "./dist/lib/index.js",
+  "types": "./dist/lib/index.d.ts",
+  "bin": {
+    "rn-arch-gen": "./dist/bin/rn_arch_gen.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/lib/index.d.ts",
+      "import": "./dist/lib/index.js"
+    }
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "start": "node ./dist/bin/rn_arch_gen.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "clean-architecture",
+    "feature-based",
+    "atomic-design",
+    "mvvm",
+    "cli",
+    "scaffolding",
+    "generator",
+    "code-generation",
+    "boilerplate",
+    "typescript",
+    "redux",
+    "zustand"
+  ],
+  "author": "acrocoder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acrocoder/react-native-architecture-generator.git"
+  },
+  "homepage": "https://github.com/acrocoder/react-native-architecture-generator#readme",
+  "bugs": {
+    "url": "https://github.com/acrocoder/react-native-architecture-generator/issues"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^14.0.3",
+    "fs-extra": "^11.3.3",
+    "inquirer": "^13.1.0",
+    "ora": "^9.3.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.3"
+  }
+}
