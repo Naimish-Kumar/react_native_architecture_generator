@@ -169,7 +169,7 @@ rn-arch-gen --help
 ### 1. Create a React Native project
 
 ```bash
-npx react-native init my_awesome_app
+npx @react-native-community/cli init my_awesome_app
 cd my_awesome_app
 ```
 
