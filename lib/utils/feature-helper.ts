@@ -462,14 +462,50 @@ const styles = StyleSheet.create({
     if (config.routing === Routing.expoRouter) return;
     const navFile = path.join(process.cwd(), 'src', 'navigation', 'AppNavigator.tsx');
     if (!(await fs.pathExists(navFile))) return;
+
     const pascalName = StringUtils.toPascalCase(name);
     const snakeName = StringUtils.toSnakeCase(name);
     const screenDir = screenSubPath || (config.architecture === Architecture.cleanArchitecture ? 'presentation/screens' : config.architecture === Architecture.mvvm ? 'views/screens' : 'screens');
+
     let contents = await fs.readFile(navFile, 'utf-8');
-    const importStr = name === 'auth'
+
+    // 1. Add Imports
+    const imports = name === 'auth'
       ? `import { LoginScreen } from '../features/auth/${screenDir}/LoginScreen';\nimport { RegisterScreen } from '../features/auth/${screenDir}/RegisterScreen';`
       : `import { ${pascalName}Screen } from '../features/${snakeName}/${screenDir}/${pascalName}Screen';`;
-    if (!contents.includes(importStr.split('\n')[0])) contents = `${importStr}\n${contents}`;
+
+    if (!contents.includes(imports.split('\n')[0])) {
+      contents = `${imports}\n${contents}`;
+    }
+
+    // 2. Add Route Parameters
+    if (name === 'auth') {
+      if (!contents.includes('Login: undefined')) {
+        contents = contents.replace('// Define your route params here', '// Define your route params here\n  Login: undefined;\n  Register: undefined;');
+      }
+    } else {
+      if (!contents.includes(`${pascalName}: undefined`)) {
+        contents = contents.replace('// Define your route params here', `// Define your route params here\n  ${pascalName}: undefined;`);
+      }
+    }
+
+    // 3. Add Screen Components
+    if (name === 'auth') {
+      if (!contents.includes('name="Login"')) {
+        contents = contents.replace(
+          '{/* Add your screens here */}',
+          `<Stack.Screen name="Login" component={LoginScreen} />\n        <Stack.Screen name="Register" component={RegisterScreen} />\n        {/* Add your screens here */}`
+        );
+      }
+    } else {
+      if (!contents.includes(`name="${pascalName}"`)) {
+        contents = contents.replace(
+          '{/* Add your screens here */}',
+          `<Stack.Screen name="${pascalName}" component={${pascalName}Screen} />\n        {/* Add your screens here */}`
+        );
+      }
+    }
+
     await fs.writeFile(navFile, contents);
   }
 

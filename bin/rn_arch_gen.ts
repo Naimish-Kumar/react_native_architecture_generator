@@ -10,7 +10,7 @@ const program = new Command();
 program
     .name('rn-arch-gen')
     .description('A powerful CLI tool to instantly generate a production-ready React Native project architecture.')
-    .version('1.1.0');
+    .version('1.1.1');
 
 program
     .command('init')

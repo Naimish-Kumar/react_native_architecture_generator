@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import ora from 'ora';
-import { Architecture, ArchitectureLabels, StateManagement, Routing } from '../models/config.js';
+import { Architecture, ArchitectureLabels, StateManagement, StateManagementLabels, Routing, RoutingLabels } from '../models/config.js';
 import type { GeneratorConfig } from '../models/config.js';
 import { FileHelper } from '../utils/file-helper.js';
 import { FeatureHelper } from '../utils/feature-helper.js';
@@ -13,27 +13,36 @@ export class InitCommand {
 
         const answers = await inquirer.prompt([
             {
-                type: 'list',
+                type: 'select',
                 name: 'architecture',
                 message: 'Select architecture pattern:',
-                choices: Object.values(Architecture).map((arch) => ({
-                    name: ArchitectureLabels[arch],
-                    value: arch,
-                })),
+                choices: [
+                    { name: ArchitectureLabels[Architecture.cleanArchitecture], value: Architecture.cleanArchitecture },
+                    { name: ArchitectureLabels[Architecture.featureBased], value: Architecture.featureBased },
+                    { name: ArchitectureLabels[Architecture.atomicDesign], value: Architecture.atomicDesign },
+                    { name: ArchitectureLabels[Architecture.mvvm], value: Architecture.mvvm },
+                ],
                 default: Architecture.cleanArchitecture,
             },
             {
-                type: 'list',
+                type: 'select',
                 name: 'stateManagement',
                 message: 'Select state management:',
-                choices: Object.values(StateManagement),
+                choices: [
+                    { name: StateManagementLabels[StateManagement.redux], value: StateManagement.redux },
+                    { name: StateManagementLabels[StateManagement.zustand], value: StateManagement.zustand },
+                    { name: StateManagementLabels[StateManagement.context], value: StateManagement.context },
+                ],
                 default: StateManagement.redux,
             },
             {
-                type: 'list',
+                type: 'select',
                 name: 'routing',
                 message: 'Select routing:',
-                choices: Object.values(Routing),
+                choices: [
+                    { name: RoutingLabels[Routing.reactNavigation], value: Routing.reactNavigation },
+                    { name: RoutingLabels[Routing.expoRouter], value: Routing.expoRouter },
+                ],
                 default: Routing.reactNavigation,
             },
             {

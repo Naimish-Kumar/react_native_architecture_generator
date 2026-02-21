@@ -34,3 +34,14 @@ export const ArchitectureLabels: Record<Architecture, string> = {
   [Architecture.atomicDesign]: '⚛️  Atomic Design + Feature (Atoms → Molecules → Organisms)',
   [Architecture.mvvm]: '🧩 MVVM with Hooks (Model → ViewModel → View)',
 };
+
+export const StateManagementLabels: Record<StateManagement, string> = {
+  [StateManagement.redux]: 'Redux Toolkit (Professional State Management)',
+  [StateManagement.zustand]: 'Zustand (Lightweight & Fast)',
+  [StateManagement.context]: 'Context API (Built-in React State)',
+};
+
+export const RoutingLabels: Record<Routing, string> = {
+  [Routing.reactNavigation]: 'React Navigation (Standard & Customisable)',
+  [Routing.expoRouter]: 'Expo Router (File-based routing)',
+};
