@@ -45,15 +45,15 @@
     "redux",
     "zustand"
   ],
-  "author": "acrocoder",
+  "author": "Naimish Kumar <vnaimishkumar@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acrocoder/react-native-architecture-generator.git"
+    "url": "https://github.com/Naimish-Kumar/react_native_architecture_generator.git"
   },
-  "homepage": "https://github.com/acrocoder/react-native-architecture-generator#readme",
+  "homepage": "https://github.com/Naimish-Kumar/react_native_architecture_generator#readme",
   "bugs": {
-    "url": "https://github.com/acrocoder/react-native-architecture-generator/issues"
+    "url": "https://github.com/Naimish-Kumar/react_native_architecture_generator/issues"
   },
   "sideEffects": false,
   "dependencies": {
